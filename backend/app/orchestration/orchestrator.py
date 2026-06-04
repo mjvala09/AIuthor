@@ -180,19 +180,31 @@ class BookOrchestrator:
         
         # 6. Memory Update
         self.trace_logger.log_activity("Memory Keeper: Extraction and indexing...")
+        
+        # Get a snapshot of current memory state under lock
         with self._lock:
-            self.state.memories = self.memory_keeper.update_memory(
-                chapter_number=chapter_num,
-                chapter_title=ch_outline.title,
-                text=verified_text,
-                current_memory=self.state.memories,
-                trace_logger=self.trace_logger,
-                api_key=self.api_key
-            )
+            current_mem_snapshot = self.state.memories.model_copy(deep=True)
             
+        # Run LLM memory extraction outside the lock to allow parallel execution
+        new_mem_delta = self.memory_keeper.extract_memory_delta(
+            chapter_number=chapter_num,
+            chapter_title=ch_outline.title,
+            text=verified_text,
+            current_memory=current_mem_snapshot,
+            trace_logger=self.trace_logger,
+            api_key=self.api_key
+        )
+        
+        # Merge changes and save state under lock (highly efficient, zero LLM calls inside lock)
+        with self._lock:
+            self.state.memories = self.memory_keeper.merge_memory(
+                current_memory=self.state.memories,
+                new_mem=new_mem_delta
+            )
             ch_result.status = "complete"
             ch_result.eval_score = 0.95  # placeholder score
             self.save_state()
+            
         self.trace_logger.log_activity(f"Finished Chapter {chapter_num}. Words written: {ch_result.word_count}")
 
     def assemble_and_build(self):

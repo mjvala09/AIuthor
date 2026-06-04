@@ -243,8 +243,8 @@ class RAGService:
         
         return sorted(scores, key=lambda x: x[1], reverse=True)[:top_k]
 
-    def hybrid_search(self, query: str, top_k: int = 5, dense_weight: float = 0.5, api_key: Optional[str] = None) -> List[Dict[str, Any]]:
-        """Combines BM25 and Dense vector search results with a weighted fusion, then reranks."""
+    def hybrid_search(self, query: str, top_k: int = 5, dense_weight: float = 0.5, api_key: Optional[str] = None, use_llm_rerank: bool = False) -> List[Dict[str, Any]]:
+        """Combines BM25 and Dense vector search results with a weighted fusion, then reranks if requested."""
         if not self.chunks:
             return []
             
@@ -264,13 +264,24 @@ class RAGService:
         for idx, score in bm25_results:
             merged_scores[idx] = merged_scores.get(idx, 0.0) + score * (1.0 - dense_weight)
             
-        # Sort and take top candidates for rerank
-        sorted_candidates = sorted(merged_scores.items(), key=lambda x: x[1], reverse=True)[:10]
+        # Sort candidates by combined score
+        sorted_candidates = sorted(merged_scores.items(), key=lambda x: x[1], reverse=True)
         
-        # Perform LLM-based Reranking
-        reranked_results = self._llm_rerank(query, sorted_candidates, top_k=top_k, api_key=api_key)
-        
-        return reranked_results
+        if use_llm_rerank:
+            # Perform LLM-based Reranking on top 10 candidates
+            candidates_to_rerank = sorted_candidates[:10]
+            reranked_results = self._llm_rerank(query, candidates_to_rerank, top_k=top_k, api_key=api_key)
+            return reranked_results
+        else:
+            # Return top candidates directly, scaled to 0-10 format to match LLM output schema expectations
+            results = []
+            for idx, score in sorted_candidates[:top_k]:
+                chunk = self.chunks[idx].copy()
+                if "embedding" in chunk:
+                    del chunk["embedding"]  # Remove embedding vectors before sending over JSON api
+                chunk["score"] = score * 10.0
+                results.append(chunk)
+            return results
 
     def _llm_rerank(self, query: str, candidates: List[Tuple[int, float]], top_k: int, api_key: Optional[str] = None) -> List[Dict[str, Any]]:
         """Uses LLM-as-judge to rank candidate chunks by relevance to the query."""

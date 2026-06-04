@@ -98,13 +98,23 @@ Do not fabricate facts. If information is not found, state it explicitly."""
         trace_logger: Optional[TraceLogger] = None,
         api_key: Optional[str] = None
     ) -> str:
-        # 1. Query local RAG service for each key concept
+        # 1. Query local RAG service for each key concept in parallel
         retrieved_contexts = []
-        for concept in chapter.key_concepts:
-            query = f"{chapter.title} {concept}"
-            rag_results = rag_service.hybrid_search(query=query, top_k=3, api_key=api_key)
-            for res in rag_results:
-                retrieved_contexts.append(f"Source: {res['metadata']['source']}\nContent: {res['text']}")
+        import concurrent.futures
+        
+        def run_search(cpt):
+            q = f"{chapter.title} {cpt}"
+            return rag_service.hybrid_search(query=q, top_k=3, api_key=api_key)
+            
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max(1, len(chapter.key_concepts))) as executor:
+            futures = {executor.submit(run_search, concept): concept for concept in chapter.key_concepts}
+            for future in concurrent.futures.as_completed(futures):
+                try:
+                    rag_results = future.result()
+                    for res in rag_results:
+                        retrieved_contexts.append(f"Source: {res['metadata']['source']}\nContent: {res['text']}")
+                except Exception as e:
+                    logger.error(f"Error researching concept {futures[future]}: {e}")
 
         # 2. Optional: Run web search using DuckDuckGo
         web_contexts = []
@@ -479,7 +489,7 @@ Your task is to analyze the final chapter text and update the Book's Memory Stor
 Return the updates in JSON matching the schema."""
         )
 
-    def update_memory(
+    def extract_memory_delta(
         self,
         chapter_number: int,
         chapter_title: str,
@@ -488,6 +498,7 @@ Return the updates in JSON matching the schema."""
         trace_logger: Optional[TraceLogger] = None,
         api_key: Optional[str] = None
     ) -> BookMemory:
+        """Invokes the LLM to extract new memory items from the chapter text."""
         prompt = f"""Analyze Chapter {chapter_number}: "{chapter_title}" and update the Book Memory.
 Current Memory State:
 {current_memory.model_dump_json()}
@@ -526,40 +537,64 @@ Return a complete updated BookMemory object in JSON matching this structure:
         try:
             match = re.search(r'\{.*\}', res_str, re.DOTALL)
             json_data = json.loads(match.group(0)) if match else json.loads(res_str)
-            # Reconstruct and merge with previous to avoid loss of old records
-            new_mem = BookMemory.model_validate(json_data)
-            
-            # Merge registries (uniquify by claim/name/content)
-            merged = BookMemory()
-            
-            # Fact Registry
-            claims = {f.claim.lower(): f for f in current_memory.fact_registry}
-            for f in new_mem.fact_registry:
-                claims[f.claim.lower()] = f
-            merged.fact_registry = list(claims.values())
-            
-            # Concept Bible
-            concepts = {c.name.lower(): c for c in current_memory.concept_bible}
-            for c in new_mem.concept_bible:
-                concepts[c.name.lower()] = c
-            merged.concept_bible = list(concepts.values())
-            
-            # Callback Index
-            callbacks = {cb.content.lower(): cb for cb in current_memory.callback_index}
-            for cb in new_mem.callback_index:
-                callbacks[cb.content.lower()] = cb
-            merged.callback_index = list(callbacks.values())
-            
-            # Tonality
-            merged.tonality_fingerprint = list(set(current_memory.tonality_fingerprint + new_mem.tonality_fingerprint))
-            
-            # Decisions
-            merged.decision_log = current_memory.decision_log + new_mem.decision_log
-            
-            return merged
+            return BookMemory.model_validate(json_data)
         except Exception as e:
-            logger.error(f"Failed to merge memory: {e}")
-            return current_memory
+            logger.error(f"Failed to parse Memory Keeper extraction JSON: {e}")
+            return BookMemory()
+
+    def merge_memory(
+        self,
+        current_memory: BookMemory,
+        new_mem: BookMemory
+    ) -> BookMemory:
+        """Merges a new memory delta into the current memory state in a pure Python thread-safe manner."""
+        merged = BookMemory()
+        
+        # Fact Registry
+        claims = {f.claim.lower(): f for f in current_memory.fact_registry}
+        for f in new_mem.fact_registry:
+            claims[f.claim.lower()] = f
+        merged.fact_registry = list(claims.values())
+        
+        # Concept Bible
+        concepts = {c.name.lower(): c for c in current_memory.concept_bible}
+        for c in new_mem.concept_bible:
+            concepts[c.name.lower()] = c
+        merged.concept_bible = list(concepts.values())
+        
+        # Callback Index
+        callbacks = {cb.content.lower(): cb for cb in current_memory.callback_index}
+        for cb in new_mem.callback_index:
+            callbacks[cb.content.lower()] = cb
+        merged.callback_index = list(callbacks.values())
+        
+        # Tonality
+        merged.tonality_fingerprint = list(set(current_memory.tonality_fingerprint + new_mem.tonality_fingerprint))
+        
+        # Decisions
+        merged.decision_log = current_memory.decision_log + new_mem.decision_log
+        
+        return merged
+
+    def update_memory(
+        self,
+        chapter_number: int,
+        chapter_title: str,
+        text: str,
+        current_memory: BookMemory,
+        trace_logger: Optional[TraceLogger] = None,
+        api_key: Optional[str] = None
+    ) -> BookMemory:
+        """Helper for backwards compatibility. Combines extraction and merging in one step."""
+        new_mem = self.extract_memory_delta(
+            chapter_number=chapter_number,
+            chapter_title=chapter_title,
+            text=text,
+            current_memory=current_memory,
+            trace_logger=trace_logger,
+            api_key=api_key
+        )
+        return self.merge_memory(current_memory, new_mem)
 
 
 # ==========================================
