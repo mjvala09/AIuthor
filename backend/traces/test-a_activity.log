@@ -323,3 +323,146 @@
 [2026-06-04T22:49:20.789597] Humanizer Scorer: Selected Option B (Score: A=8.5, B=9.2). Reason: Option B was chosen as the winner due to its stronger hook power and more vivid imagery, which effectively draws the reader in while maintaining the conversational style. The narrative aspect also adds an engaging layer that makes it relatable and impactful.
 [2026-06-04T22:49:20.789739] Agent HumanizerScorer completed step reward_model_choice.
 [2026-06-04T22:49:20.792662] Agent Humanizer started execution.
+[2026-06-04T22:49:25.214005] Usage [Agent: Humanizer, Model: gpt-4o]: 1630 prompt tokens, 1165 completion tokens (Est. Cost: $0.025625)
+[2026-06-04T22:49:25.215737] Agent Humanizer completed step generate_content.
+[2026-06-04T22:49:25.224986] Agent Editor started execution.
+[2026-06-04T22:49:27.160116] Usage [Agent: Humanizer, Model: gpt-4o]: 1483 prompt tokens, 1172 completion tokens (Est. Cost: $0.024995)
+[2026-06-04T22:49:27.161899] Agent Humanizer completed step generate_content.
+[2026-06-04T22:49:27.171203] Agent Editor started execution.
+[2026-06-04T22:49:29.266790] Usage [Agent: Humanizer, Model: gpt-4o]: 1596 prompt tokens, 1022 completion tokens (Est. Cost: $0.023310)
+[2026-06-04T22:49:29.268514] Agent Humanizer completed step generate_content.
+[2026-06-04T22:49:29.277407] Agent Editor started execution.
+[2026-06-04T22:49:34.737767] Usage [Agent: Humanizer, Model: gpt-4o]: 1511 prompt tokens, 992 completion tokens (Est. Cost: $0.022435)
+[2026-06-04T22:49:34.739560] Agent Humanizer completed step generate_content.
+[2026-06-04T22:49:34.742183] Agent Editor started execution.
+[2026-06-04T22:49:36.990387] Usage [Agent: Humanizer, Model: gpt-4o]: 1606 prompt tokens, 982 completion tokens (Est. Cost: $0.022760)
+[2026-06-04T22:49:36.992098] Agent Humanizer completed step generate_content.
+[2026-06-04T22:49:37.000954] Agent Editor started execution.
+[2026-06-04T22:49:40.907116] Usage [Agent: Editor, Model: gpt-4o-mini]: 1442 prompt tokens, 1244 completion tokens (Est. Cost: $0.000963)
+[2026-06-04T22:49:40.909226] Agent Editor completed step generate_content.
+[2026-06-04T22:49:40.917786] Agent Fact-Checker started execution.
+[2026-06-04T22:49:42.941277] Usage [Agent: Editor, Model: gpt-4o-mini]: 1433 prompt tokens, 1220 completion tokens (Est. Cost: $0.000947)
+[2026-06-04T22:49:42.943353] Agent Editor completed step generate_content.
+[2026-06-04T22:49:42.950222] Agent Fact-Checker started execution.
+[2026-06-04T22:49:43.236864] Usage [Agent: Editor, Model: gpt-4o-mini]: 1252 prompt tokens, 1087 completion tokens (Est. Cost: $0.000840)
+[2026-06-04T22:49:43.238655] Agent Editor completed step generate_content.
+[2026-06-04T22:49:43.248009] Agent Fact-Checker started execution.
+[2026-06-04T22:49:47.684806] Usage [Agent: Editor, Model: gpt-4o-mini]: 1269 prompt tokens, 1041 completion tokens (Est. Cost: $0.000815)
+[2026-06-04T22:49:47.686721] Agent Editor completed step generate_content.
+[2026-06-04T22:49:47.689786] Agent Fact-Checker started execution.
+[2026-06-04T22:49:51.791009] Usage [Agent: Editor, Model: gpt-4o-mini]: 1252 prompt tokens, 1029 completion tokens (Est. Cost: $0.000805)
+[2026-06-04T22:49:51.793042] Agent Editor completed step generate_content.
+[2026-06-04T22:49:51.796272] Agent Fact-Checker started execution.
+[2026-06-04T22:49:59.313957] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2268 prompt tokens, 1455 completion tokens (Est. Cost: $0.001213)
+[2026-06-04T22:49:59.322434] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:49:59.324974] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:49:59.326005] Agent Memory Keeper started execution.
+[2026-06-04T22:50:00.748643] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2288 prompt tokens, 1313 completion tokens (Est. Cost: $0.001131)
+[2026-06-04T22:50:00.750658] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:50:00.759107] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:50:00.759587] Agent Memory Keeper started execution.
+[2026-06-04T22:50:05.969537] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2318 prompt tokens, 1256 completion tokens (Est. Cost: $0.001101)
+[2026-06-04T22:50:05.971637] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:50:05.980982] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:50:05.981455] Agent Memory Keeper started execution.
+[2026-06-04T22:50:09.349520] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2122 prompt tokens, 1303 completion tokens (Est. Cost: $0.001100)
+[2026-06-04T22:50:09.351789] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:50:09.360195] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:50:09.360709] Agent Memory Keeper started execution.
+[2026-06-04T22:50:10.270915] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 3832 prompt tokens, 648 completion tokens (Est. Cost: $0.000964)
+[2026-06-04T22:50:10.273380] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:50:10.282827] Finished Chapter 9. Words written: 1009
+[2026-06-04T22:50:14.208046] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 3870 prompt tokens, 842 completion tokens (Est. Cost: $0.001086)
+[2026-06-04T22:50:14.210327] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:50:14.213797] Finished Chapter 10. Words written: 876
+[2026-06-04T22:50:17.338468] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2442 prompt tokens, 1425 completion tokens (Est. Cost: $0.001221)
+[2026-06-04T22:50:17.346848] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:50:17.349504] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:50:17.350096] Agent Memory Keeper started execution.
+[2026-06-04T22:50:21.069948] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 3886 prompt tokens, 833 completion tokens (Est. Cost: $0.001083)
+[2026-06-04T22:50:21.072380] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:50:21.076181] Finished Chapter 8. Words written: 884
+[2026-06-04T22:50:21.270154] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 3912 prompt tokens, 677 completion tokens (Est. Cost: $0.000993)
+[2026-06-04T22:50:21.272496] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:50:21.279557] Finished Chapter 7. Words written: 838
+[2026-06-04T22:50:29.932502] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 4983 prompt tokens, 844 completion tokens (Est. Cost: $0.001254)
+[2026-06-04T22:50:29.935059] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:50:29.945469] Finished Chapter 6. Words written: 970
+[2026-06-04T22:50:29.945853] Assembler: Drafting front and back matter...
+[2026-06-04T22:50:29.947880] Agent Assembler started execution.
+[2026-06-04T22:50:53.483680] Usage [Agent: Assembler, Model: gpt-4o]: 5762 prompt tokens, 2525 completion tokens (Est. Cost: $0.066685)
+[2026-06-04T22:50:53.487033] Agent Assembler completed step generate_content.
+[2026-06-04T22:50:53.495593] DocGen: Generating PDF & DOCX books...
+[2026-06-04T22:50:56.152771] Book Generation COMPLETE! PDF saved: /home/manoj-vala/projects/TheGatewayCorp-Assignment/backend/output_books/test-a_book.pdf
+[2026-06-04T22:52:58.626232] Humanizer: Generating preference pairs (Option A and B) for Chapter 3 opening hook...
+[2026-06-04T22:53:01.484729] Usage [Agent: Humanizer, Model: gpt-4o-mini]: 170 prompt tokens, 197 completion tokens (Est. Cost: $0.000144)
+[2026-06-04T22:53:04.660326] Usage [Agent: HumanizerScorer, Model: gpt-4o-mini]: 435 prompt tokens, 236 completion tokens (Est. Cost: $0.000207)
+[2026-06-04T22:53:04.660552] Humanizer Scorer: Selected Option B (Score: A=7.5, B=8.8). Reason: Option B was chosen as the winner due to its stronger alignment with an academic tone while still engaging the reader effectively. Its metaphorical comparison to a flashlight provides a clear and relatable understanding of the concept of an emergency fund, making it both impactful and precise.
+[2026-06-04T22:53:04.660601] Agent HumanizerScorer completed step reward_model_choice.
+[2026-06-04T22:53:04.660720] Agent Humanizer started execution.
+[2026-06-04T22:53:19.987806] Usage [Agent: Humanizer, Model: gpt-4o]: 1534 prompt tokens, 1042 completion tokens (Est. Cost: $0.023300)
+[2026-06-04T22:53:19.988073] Agent Humanizer completed step generate_content.
+[2026-06-04T22:53:19.988437] Humanizer: Generating preference pairs (Option A and B) for Chapter 3 opening hook...
+[2026-06-04T22:53:23.296431] Usage [Agent: Humanizer, Model: gpt-4o-mini]: 172 prompt tokens, 191 completion tokens (Est. Cost: $0.000140)
+[2026-06-04T22:53:27.294382] Usage [Agent: HumanizerScorer, Model: gpt-4o-mini]: 432 prompt tokens, 236 completion tokens (Est. Cost: $0.000206)
+[2026-06-04T22:53:27.294700] Humanizer Scorer: Selected Option B (Score: A=8.5, B=9.2). Reason: Option B was chosen as the winner due to its strong narrative hook that immediately engages the reader's emotions and relates to their experiences. This connection enhances its motivational quality, making it a superior opening for the chapter.
+[2026-06-04T22:53:27.294775] Agent HumanizerScorer completed step reward_model_choice.
+[2026-06-04T22:53:27.294971] Agent Humanizer started execution.
+[2026-06-04T22:53:38.861872] Usage [Agent: Humanizer, Model: gpt-4o]: 1548 prompt tokens, 879 completion tokens (Est. Cost: $0.020925)
+[2026-06-04T22:53:38.862267] Agent Humanizer completed step generate_content.
+[2026-06-04T22:53:38.870850] Humanizer: Generating preference pairs (Option A and B) for Chapter 3 opening hook...
+[2026-06-04T22:53:42.244359] Usage [Agent: Humanizer, Model: gpt-4o-mini]: 171 prompt tokens, 214 completion tokens (Est. Cost: $0.000154)
+[2026-06-04T22:53:45.718120] Usage [Agent: HumanizerScorer, Model: gpt-4o-mini]: 453 prompt tokens, 278 completion tokens (Est. Cost: $0.000235)
+[2026-06-04T22:53:45.718484] Humanizer Scorer: Selected Option B (Score: A=8.5, B=9.2). Reason: Option B was chosen as the winner due to its superior alignment with the 'Witty' tonality, clever metaphors, and an engaging hook that immediately captures the reader's attention. It balances humor with relatability effectively, making it more impactful than Option A.
+[2026-06-04T22:53:45.718537] Agent HumanizerScorer completed step reward_model_choice.
+[2026-06-04T22:53:45.726561] Agent Humanizer started execution.
+[2026-06-04T22:53:57.702870] Usage [Agent: Humanizer, Model: gpt-4o]: 1552 prompt tokens, 995 completion tokens (Est. Cost: $0.022685)
+[2026-06-04T22:53:57.703332] Agent Humanizer completed step generate_content.
+[2026-06-04T22:53:57.717656] --- Test Case D: Inserting Chapter after Chapter 4 ---
+[2026-06-04T22:53:57.717851] Chapter inserted. Shifted subsequent chapters. Running pipeline for Chapter 5...
+[2026-06-04T22:53:57.724877] --- Processing Chapter 5: Chapter 4b: Advanced Investing Strategies ---
+[2026-06-04T22:53:58.972614] Agent Researcher started execution.
+[2026-06-04T22:54:14.702471] Usage [Agent: Researcher, Model: gpt-4o-mini]: 4922 prompt tokens, 952 completion tokens (Est. Cost: $0.001309)
+[2026-06-04T22:54:14.702841] Agent Researcher completed step generate_content.
+[2026-06-04T22:54:14.707922] Agent Writer started execution.
+[2026-06-04T22:54:29.549396] Usage [Agent: Writer, Model: gpt-4o]: 3139 prompt tokens, 1235 completion tokens (Est. Cost: $0.034220)
+[2026-06-04T22:54:29.549653] Agent Writer completed step generate_content.
+[2026-06-04T22:54:29.554233] Humanizer: Generating preference pairs (Option A and B) for Chapter 5 opening hook...
+[2026-06-04T22:54:32.998315] Usage [Agent: Humanizer, Model: gpt-4o-mini]: 171 prompt tokens, 242 completion tokens (Est. Cost: $0.000171)
+[2026-06-04T22:54:36.337037] Usage [Agent: HumanizerScorer, Model: gpt-4o-mini]: 482 prompt tokens, 257 completion tokens (Est. Cost: $0.000226)
+[2026-06-04T22:54:36.337370] Humanizer Scorer: Selected Option B (Score: A=8.5, B=9.2). Reason: Option B was chosen as the winner due to its superior imagery and immediate hook power, which captivates the reader's imagination more effectively than Option A. The absence of AI tells further enhances its conversational quality, making it more relatable and engaging.
+[2026-06-04T22:54:36.337430] Agent HumanizerScorer completed step reward_model_choice.
+[2026-06-04T22:54:36.337678] Agent Humanizer started execution.
+[2026-06-04T22:54:49.415765] Usage [Agent: Humanizer, Model: gpt-4o]: 1692 prompt tokens, 1096 completion tokens (Est. Cost: $0.024900)
+[2026-06-04T22:54:49.416193] Agent Humanizer completed step generate_content.
+[2026-06-04T22:54:49.420455] Agent Editor started execution.
+[2026-06-04T22:55:03.649895] Usage [Agent: Editor, Model: gpt-4o-mini]: 1364 prompt tokens, 1132 completion tokens (Est. Cost: $0.000884)
+[2026-06-04T22:55:03.650430] Agent Editor completed step generate_content.
+[2026-06-04T22:55:03.655448] Agent Fact-Checker started execution.
+[2026-06-04T22:55:21.107665] Usage [Agent: Fact-Checker, Model: gpt-4o-mini]: 2442 prompt tokens, 1383 completion tokens (Est. Cost: $0.001196)
+[2026-06-04T22:55:21.108102] Agent Fact-Checker completed step generate_content.
+[2026-06-04T22:55:21.114318] Memory Keeper: Extraction and indexing...
+[2026-06-04T22:55:21.115558] Agent Memory Keeper started execution.
+[2026-06-04T22:55:32.651899] Usage [Agent: Memory Keeper, Model: gpt-4o-mini]: 6652 prompt tokens, 869 completion tokens (Est. Cost: $0.001519)
+[2026-06-04T22:55:32.652517] Agent Memory Keeper completed step generate_content.
+[2026-06-04T22:55:32.664819] Finished Chapter 5. Words written: 903
+[2026-06-04T22:55:32.665022] Running Downstream Self-Healing Callback & Reference Repair...
+[2026-06-04T22:55:32.665075] Self-Healing: Inspecting Chapter 6 for reference repairs.
+[2026-06-04T22:55:46.811860] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1332 prompt tokens, 1097 completion tokens (Est. Cost: $0.000858)
+[2026-06-04T22:55:46.812678] Self-Healing: Inspecting Chapter 7 for reference repairs.
+[2026-06-04T22:55:59.458045] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1460 prompt tokens, 1229 completion tokens (Est. Cost: $0.000956)
+[2026-06-04T22:55:59.459435] Self-Healing: Inspecting Chapter 8 for reference repairs.
+[2026-06-04T22:56:11.069266] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1267 prompt tokens, 1029 completion tokens (Est. Cost: $0.000807)
+[2026-06-04T22:56:11.070034] Self-Healing: Inspecting Chapter 9 for reference repairs.
+[2026-06-04T22:56:21.771651] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1330 prompt tokens, 1122 completion tokens (Est. Cost: $0.000873)
+[2026-06-04T22:56:21.772265] Self-Healing: Inspecting Chapter 10 for reference repairs.
+[2026-06-04T22:56:37.755021] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1475 prompt tokens, 1241 completion tokens (Est. Cost: $0.000966)
+[2026-06-04T22:56:37.755677] Self-Healing: Inspecting Chapter 11 for reference repairs.
+[2026-06-04T22:56:50.827176] Usage [Agent: SelfHealer, Model: gpt-4o-mini]: 1322 prompt tokens, 1133 completion tokens (Est. Cost: $0.000878)
+[2026-06-04T22:56:50.827774] Self-Healing: Regenerating front matter, TOC, and glossary...
+[2026-06-04T22:56:50.827812] Assembler: Drafting front and back matter...
+[2026-06-04T22:56:50.833636] Agent Assembler started execution.
+[2026-06-04T22:57:13.596781] Usage [Agent: Assembler, Model: gpt-4o]: 6361 prompt tokens, 1379 completion tokens (Est. Cost: $0.052490)
+[2026-06-04T22:57:13.597356] Agent Assembler completed step generate_content.
+[2026-06-04T22:57:13.606124] DocGen: Generating PDF & DOCX books...
+[2026-06-04T22:57:16.238936] Book Generation COMPLETE! PDF saved: /home/manoj-vala/projects/TheGatewayCorp-Assignment/backend/output_books/test-a_book.pdf
